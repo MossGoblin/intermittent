@@ -4,7 +4,7 @@ import numpy
 from datetime import datetime
 from typing import List
 
-from sort import *
+from crystal_sort import *
 
 
 def get_rand_set(min: int, max: int, size: int):
@@ -22,67 +22,95 @@ def confirm_sort(bucket: List) -> bool:
         return False
 
 
-def record_run(log, set_range, passes, swaps):
+def record_run(log, run, set_range, passes, comparisons, swaps):
     if set_range not in log:
         log[set_range] = {}
 
-    if 'passes' in log[set_range]:
-        log[set_range]['passes'] = (log[set_range]['passes'] + passes)/2
+    if 'mean passes' in log[set_range]:
+        log[set_range]['mean passes'] = (log[set_range]['mean passes'] + passes)/2
     else:
-        log[set_range]['passes'] = passes
+        log[set_range]['mean passes'] = passes
 
-    if 'swaps' in log[set_range]:
-        log[set_range]['swaps'] = (log[set_range]['swaps'] + swaps)/2
+    if 'mean comparisons' in log[set_range]:
+        log[set_range]['mean comparisons'] = (log[set_range]['mean comparisons'] + comparisons)/2
     else:
-        log[set_range]['swaps'] = swaps
+        log[set_range]['mean comparisons'] = comparisons
+
+    if 'mean swaps' in log[set_range]:
+        log[set_range]['mean swaps'] = (log[set_range]['mean swaps'] + swaps)/2
+    else:
+        log[set_range]['mean swaps'] = swaps
+
     return log
 
 
-input = []
-
-repetition = 100
-
-for magnitude in range(1, 4):
-    for rep in range(repetition):
-        input.append(get_rand_set(0, 10*magnitude, 10**magnitude))
-
-# input.append([1, 8, 7, 6, 8, 6, 6, 3, 6, 9])
-
-log = {}
-fails = {}
-
-
-print("-- -- --")
-for index, set in enumerate(input):
-    set_range = len(set)
-    print(set_range)
-    start_bucket = set
+def process(repetition: int, min: int, max: int):
     start = datetime.utcnow()
-    bucket, passes, swaps = shrink_sort(start_bucket)
-    end = datetime.utcnow()
-    confirmed = confirm_sort(bucket)
-    print(f"confirmed: {confirmed}")
-    log = record_run(log, set_range, passes, swaps)
-    print(f"passes: {passes}")
-    print(f"swaps: {swaps}")
-    if not confirmed:
-        print(start_bucket)
-        print(bucket)
-        sorted_bucket = deepcopy(bucket)
-        sorted_bucket.sort()
-        print(sorted_bucket)
-        fails[index] = {}
-        fails[index]['range'] = set_range
-        fails[index]['passes'] = passes
-        fails[index]['swaps'] = swaps
-        fails[index]['set'] = start_bucket
-        fails[index]['processed'] = bucket
-        fails[index]['sorted'] = sorted_bucket
-        print(fails)
-    print(end - start)
-    print("-- -- --")
 
-with open('log.log', 'w') as logfile:
-    content = json.dumps(log)
-    logfile.write(content)
-pass
+    input = []
+
+    for power in range(min, max+1):
+        for rep in range(repetition):
+            input.append(get_rand_set(0, 10*power, 10**power))
+
+    # input.append([1, 8, 7, 6, 8, 6, 6, 3, 6, 9])
+
+    log = {}
+    fails = {}
+
+    print("-- -- --")
+    for index, set in enumerate(input):
+        set_length = len(set)
+        print(f"run: {index}/{len(input)}")
+        print(f"set length: {set_length}")
+        print(f"min magnitude: {min}")
+        print(f"max magnitude: {max}")
+        # print(set) # DBG VISIBILITY ONLY
+        start_bucket = deepcopy(set)
+        sort_start = datetime.utcnow()
+        bucket, passes, comparisons, swaps = crystal_sort(start_bucket)
+        sort_end = datetime.utcnow()
+        # print(bucket) # DBG VISIBILITY ONLY
+        # DBG TEST FAIL
+        # Uncomment the next row to replace the sorted buket with the unsorted one
+        # .. in order to test reposrting of failed sorts
+        # bucket = deepcopy(set)
+
+        confirmed = confirm_sort(bucket)
+        print(f"confirmed: {confirmed}")
+        print(f"passes: {passes}")
+        print(f"comparisons: {comparisons}")
+        print(f"swaps: {swaps}")
+        if not confirmed:
+            print(set)
+            print(bucket)
+            sorted_bucket = deepcopy(bucket)
+            sorted_bucket.sort()
+            print(sorted_bucket)
+            fails[index] = {}
+            fails[index]['range'] = set_length
+            fails[index]['passes'] = passes
+            fails[index]['swaps'] = swaps
+            fails[index]['set'] = set
+            fails[index]['processed'] = bucket
+            fails[index]['sorted'] = sorted_bucket
+            print(fails)
+        print(f"sort time: {sort_end - sort_start}")
+        print("-- -- --")
+        log = record_run(log, index, set_length, passes, comparisons, swaps)
+
+    if len(fails) > 0:
+        with open('fails.log', 'w') as logfile:
+            content = json.dumps(fails)
+            logfile.write(content)
+
+    end = datetime.utcnow()
+    print(f"Total time: {end - start}")
+
+    with open('log.log', 'w') as logfile:
+        content = json.dumps(log)
+        logfile.write(content)
+
+
+if __name__ == '__main__':
+    process(10, 1, 4)
