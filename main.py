@@ -4,8 +4,8 @@ import numpy
 from datetime import datetime
 from typing import List, Dict
 
-from crystal_sort import *
-from sort import *
+from toolbox.crystal_sort_test import *
+from toolbox.sort import *
 
 algo_list = [
     'crystal',
@@ -140,4 +140,4 @@ def process(algos: List, repetition: int, min: int, max: int):
 
 
 if __name__ == '__main__':
-    process(['crystal'], 50, 1, 4)
+    process(['crystal'], 10, 1, 4)

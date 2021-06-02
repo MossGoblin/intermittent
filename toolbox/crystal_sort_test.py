@@ -1,10 +1,6 @@
 from copy import deepcopy
 import math
 
-def swap(bucket, index_one, index_two):
-    temp = bucket[index_one]
-    bucket[index_one] = bucket[index_two]
-    bucket[index_two] = temp
 
 def crystal_sort(incoming_bucket):
     bucket = deepcopy(incoming_bucket)
@@ -20,13 +16,13 @@ def crystal_sort(incoming_bucket):
             value = bucket[index]
             comparisons += 1
             if value > bucket[subset_end_index]:
-                swap(bucket, index, subset_end_index)
+                bucket[index], bucket[subset_end_index] = bucket[subset_end_index], bucket[index]
                 continue
             else:
                 swaps += 1
                 if value < bucket[subset_start_index]:
                     comparisons += 1
-                    swap(bucket, index, subset_start_index)
+                    bucket[index], bucket[subset_start_index] = bucket[subset_start_index], bucket[index]
                     swaps += 1
                     continue
     
