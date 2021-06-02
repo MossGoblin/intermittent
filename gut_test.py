@@ -150,4 +150,4 @@ def process(algos: List, repetition: int, min: int, max: int):
 
 
 if __name__ == '__main__':
-    process(['crystal'], 10, 1000, 1000)
+    process(['crystal'], 20, 1000, 1000)
