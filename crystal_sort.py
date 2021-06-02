@@ -13,18 +13,20 @@ def crystal_sort(incoming_bucket):
     comparisons = 0
 
     for offset in range(0, math.floor(len(bucket)/2)):
+        subset_start_index = offset
+        subset_end_index = - (offset + 1)
         passes += 1
-        for index in range(offset, len(bucket) - offset - 1):
+        for index in range(subset_start_index, len(bucket) + subset_end_index):
             value = bucket[index]
             comparisons += 1
-            if value > bucket[-(offset + 1)]:
-                swap(bucket, index, len(bucket) - (offset + 1))
+            if value > bucket[subset_end_index]:
+                swap(bucket, index, subset_end_index)
                 continue
             else:
                 swaps += 1
-                if value < bucket[offset]:
+                if value < bucket[subset_start_index]:
                     comparisons += 1
-                    swap(bucket, index, offset)
+                    swap(bucket, index, subset_start_index)
                     swaps += 1
                     continue
     

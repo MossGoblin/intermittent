@@ -2,7 +2,7 @@ from copy import deepcopy
 import json
 import numpy
 from datetime import datetime
-from typing import List
+from typing import List, Dict
 
 from crystal_sort import *
 from sort import *
@@ -11,6 +11,7 @@ algo_list = [
     'crystal',
     'insertion',
 ]
+
 
 def get_rand_set(min: int, max: int, size: int):
     set = numpy.random.randint(min, max, size=size)
@@ -27,24 +28,32 @@ def confirm_sort(bucket: List) -> bool:
         return False
 
 
-def record_run(log, run, set_range, passes, comparisons, swaps):
-    if set_range not in log:
-        log[set_range] = {}
+def add_average_to_log(log: Dict):
+    for set_size, set_info in log.items():
+        set_info['average comparisons'] = set_info['comparisons'] / \
+            int(set_size)
+        set_info['average swaps'] = set_info['swaps'] / int(set_size)
+    return log
 
-    if 'mean passes' in log[set_range]:
-        log[set_range]['mean passes'] = (log[set_range]['mean passes'] + passes)/2
-    else:
-        log[set_range]['mean passes'] = passes
 
-    if 'mean comparisons' in log[set_range]:
-        log[set_range]['mean comparisons'] = (log[set_range]['mean comparisons'] + comparisons)/2
-    else:
-        log[set_range]['mean comparisons'] = comparisons
+def record_run(log, set_length, passes, comparisons, swaps):
+    if set_length not in log:
+        log[set_length] = {}
 
-    if 'mean swaps' in log[set_range]:
-        log[set_range]['mean swaps'] = (log[set_range]['mean swaps'] + swaps)/2
+    if 'passes' in log[set_length]:
+        log[set_length]['passes'] = log[set_length]['passes'] + passes
     else:
-        log[set_range]['mean swaps'] = swaps
+        log[set_length]['passes'] = passes
+
+    if 'comparisons' in log[set_length]:
+        log[set_length]['comparisons'] = log[set_length]['comparisons'] + comparisons
+    else:
+        log[set_length]['comparisons'] = comparisons
+
+    if 'swaps' in log[set_length]:
+        log[set_length]['swaps'] = log[set_length]['swaps'] + swaps
+    else:
+        log[set_length]['swaps'] = swaps
 
     return log
 
@@ -57,6 +66,8 @@ def process(algos: List, repetition: int, min: int, max: int):
     for power in range(min, max+1):
         for rep in range(repetition):
             input.append(get_rand_set(0, 10*power, 10**power))
+
+    # input.append([2.3, -3.5, 77.14, 77.1, -1, 0])
 
     log = {}
     fails = {}
@@ -79,7 +90,8 @@ def process(algos: List, repetition: int, min: int, max: int):
             if algo == 'crystal':
                 bucket, passes, comparisons, swaps = crystal_sort(start_bucket)
             elif algo == 'insertion':
-                bucket, passes, comparisons, swaps = insertion_sort(start_bucket)
+                bucket, passes, comparisons, swaps = insertion_sort(
+                    start_bucket)
 
             sort_end = datetime.utcnow()
             # print(bucket) # DBG VISIBILITY ONLY
@@ -110,7 +122,7 @@ def process(algos: List, repetition: int, min: int, max: int):
                 print(fails)
             print(f"sort time: {sort_end - sort_start}")
             print("-- -- --")
-            log = record_run(log, index, set_length, passes, comparisons, swaps)
+            log = record_run(log, set_length, passes, comparisons, swaps)
 
         if len(fails) > 0:
             with open('fails.log', 'w') as logfile:
@@ -120,10 +132,12 @@ def process(algos: List, repetition: int, min: int, max: int):
         end = datetime.utcnow()
         print(f"Total time: {end - start}")
 
+        log = add_average_to_log(log)
+
         with open('log.log', 'w') as logfile:
             content = json.dumps(log)
             logfile.write(content)
 
 
 if __name__ == '__main__':
-    process(['crystal'], 100, 1, 4)
+    process(['crystal'], 50, 1, 4)
