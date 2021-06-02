@@ -1,0 +1,452 @@
+{
+    "10": {
+        "runs": 100,
+        "passes": 2490,
+        "comparisons": 2811,
+        "swaps": 829,
+        "average passes": 24.9,
+        "average comparisons": 28.11,
+        "average swaps": 8.29
+    },
+    "20": {
+        "runs": 100,
+        "passes": 9920,
+        "comparisons": 11183,
+        "swaps": 3025,
+        "average passes": 99.2,
+        "average comparisons": 111.83,
+        "average swaps": 30.25
+    },
+    "30": {
+        "runs": 100,
+        "passes": 22294,
+        "comparisons": 25120,
+        "swaps": 6301,
+        "average passes": 222.94,
+        "average comparisons": 251.2,
+        "average swaps": 63.01
+    },
+    "40": {
+        "runs": 100,
+        "passes": 39578,
+        "comparisons": 44538,
+        "swaps": 10861,
+        "average passes": 395.78,
+        "average comparisons": 445.38,
+        "average swaps": 108.61
+    },
+    "50": {
+        "runs": 100,
+        "passes": 62043,
+        "comparisons": 69799,
+        "swaps": 16733,
+        "average passes": 620.43,
+        "average comparisons": 697.99,
+        "average swaps": 167.33
+    },
+    "60": {
+        "runs": 100,
+        "passes": 89015,
+        "comparisons": 100652,
+        "swaps": 24124,
+        "average passes": 890.15,
+        "average comparisons": 1006.52,
+        "average swaps": 241.24
+    },
+    "70": {
+        "runs": 100,
+        "passes": 121158,
+        "comparisons": 136735,
+        "swaps": 32448,
+        "average passes": 1211.58,
+        "average comparisons": 1367.35,
+        "average swaps": 324.48
+    },
+    "80": {
+        "runs": 100,
+        "passes": 158754,
+        "comparisons": 177978,
+        "swaps": 41336,
+        "average passes": 1587.54,
+        "average comparisons": 1779.78,
+        "average swaps": 413.36
+    },
+    "90": {
+        "runs": 100,
+        "passes": 200977,
+        "comparisons": 225714,
+        "swaps": 52244,
+        "average passes": 2009.77,
+        "average comparisons": 2257.14,
+        "average swaps": 522.44
+    },
+    "100": {
+        "runs": 100,
+        "passes": 248115,
+        "comparisons": 278370,
+        "swaps": 63536,
+        "average passes": 2481.15,
+        "average comparisons": 2783.7,
+        "average swaps": 635.36
+    },
+    "110": {
+        "runs": 100,
+        "passes": 300585,
+        "comparisons": 337189,
+        "swaps": 77432,
+        "average passes": 3005.85,
+        "average comparisons": 3371.89,
+        "average swaps": 774.32
+    },
+    "120": {
+        "runs": 100,
+        "passes": 357624,
+        "comparisons": 402805,
+        "swaps": 92983,
+        "average passes": 3576.24,
+        "average comparisons": 4028.05,
+        "average swaps": 929.83
+    },
+    "130": {
+        "runs": 100,
+        "passes": 420077,
+        "comparisons": 471723,
+        "swaps": 107717,
+        "average passes": 4200.77,
+        "average comparisons": 4717.23,
+        "average swaps": 1077.17
+    },
+    "140": {
+        "runs": 100,
+        "passes": 486890,
+        "comparisons": 549771,
+        "swaps": 127162,
+        "average passes": 4868.9,
+        "average comparisons": 5497.71,
+        "average swaps": 1271.62
+    },
+    "150": {
+        "runs": 100,
+        "passes": 559290,
+        "comparisons": 629503,
+        "swaps": 143837,
+        "average passes": 5592.9,
+        "average comparisons": 6295.03,
+        "average swaps": 1438.37
+    },
+    "160": {
+        "runs": 100,
+        "passes": 636914,
+        "comparisons": 714858,
+        "swaps": 160989,
+        "average passes": 6369.14,
+        "average comparisons": 7148.58,
+        "average swaps": 1609.89
+    },
+    "170": {
+        "runs": 100,
+        "passes": 719238,
+        "comparisons": 809412,
+        "swaps": 179790,
+        "average passes": 7192.38,
+        "average comparisons": 8094.12,
+        "average swaps": 1797.9
+    },
+    "180": {
+        "runs": 100,
+        "passes": 806170,
+        "comparisons": 903916,
+        "swaps": 202622,
+        "average passes": 8061.7,
+        "average comparisons": 9039.16,
+        "average swaps": 2026.22
+    },
+    "190": {
+        "runs": 100,
+        "passes": 898150,
+        "comparisons": 1009967,
+        "swaps": 226447,
+        "average passes": 8981.5,
+        "average comparisons": 10099.67,
+        "average swaps": 2264.47
+    },
+    "200": {
+        "runs": 100,
+        "passes": 995193,
+        "comparisons": 1117828,
+        "swaps": 252628,
+        "average passes": 9951.93,
+        "average comparisons": 11178.28,
+        "average swaps": 2526.28
+    },
+    "210": {
+        "runs": 100,
+        "passes": 1096859,
+        "comparisons": 1233483,
+        "swaps": 275053,
+        "average passes": 10968.59,
+        "average comparisons": 12334.83,
+        "average swaps": 2750.53
+    },
+    "220": {
+        "runs": 100,
+        "passes": 1205628,
+        "comparisons": 1352789,
+        "swaps": 303082,
+        "average passes": 12056.28,
+        "average comparisons": 13527.89,
+        "average swaps": 3030.82
+    },
+    "230": {
+        "runs": 100,
+        "passes": 1315875,
+        "comparisons": 1481054,
+        "swaps": 331462,
+        "average passes": 13158.75,
+        "average comparisons": 14810.54,
+        "average swaps": 3314.62
+    },
+    "240": {
+        "runs": 100,
+        "passes": 1433691,
+        "comparisons": 1609510,
+        "swaps": 357877,
+        "average passes": 14336.91,
+        "average comparisons": 16095.1,
+        "average swaps": 3578.77
+    },
+    "250": {
+        "runs": 100,
+        "passes": 1556033,
+        "comparisons": 1748572,
+        "swaps": 390481,
+        "average passes": 15560.33,
+        "average comparisons": 17485.72,
+        "average swaps": 3904.81
+    },
+    "260": {
+        "runs": 100,
+        "passes": 1683750,
+        "comparisons": 1891193,
+        "swaps": 421553,
+        "average passes": 16837.5,
+        "average comparisons": 18911.93,
+        "average swaps": 4215.53
+    },
+    "270": {
+        "runs": 100,
+        "passes": 1815768,
+        "comparisons": 2041386,
+        "swaps": 458312,
+        "average passes": 18157.68,
+        "average comparisons": 20413.86,
+        "average swaps": 4583.12
+    },
+    "280": {
+        "runs": 100,
+        "passes": 1953119,
+        "comparisons": 2195893,
+        "swaps": 486722,
+        "average passes": 19531.19,
+        "average comparisons": 21958.93,
+        "average swaps": 4867.22
+    },
+    "290": {
+        "runs": 100,
+        "passes": 2094026,
+        "comparisons": 2350723,
+        "swaps": 525556,
+        "average passes": 20940.26,
+        "average comparisons": 23507.23,
+        "average swaps": 5255.56
+    },
+    "300": {
+        "runs": 100,
+        "passes": 2242201,
+        "comparisons": 2520660,
+        "swaps": 561881,
+        "average passes": 22422.01,
+        "average comparisons": 25206.6,
+        "average swaps": 5618.81
+    },
+    "310": {
+        "runs": 100,
+        "passes": 2392973,
+        "comparisons": 2686961,
+        "swaps": 600640,
+        "average passes": 23929.73,
+        "average comparisons": 26869.61,
+        "average swaps": 6006.4
+    },
+    "320": {
+        "runs": 100,
+        "passes": 2550472,
+        "comparisons": 2869432,
+        "swaps": 636313,
+        "average passes": 25504.72,
+        "average comparisons": 28694.32,
+        "average swaps": 6363.13
+    },
+    "330": {
+        "runs": 100,
+        "passes": 2712952,
+        "comparisons": 3047267,
+        "swaps": 680706,
+        "average passes": 27129.52,
+        "average comparisons": 30472.67,
+        "average swaps": 6807.06
+    },
+    "340": {
+        "runs": 100,
+        "passes": 2879980,
+        "comparisons": 3234026,
+        "swaps": 724222,
+        "average passes": 28799.8,
+        "average comparisons": 32340.26,
+        "average swaps": 7242.22
+    },
+    "350": {
+        "runs": 100,
+        "passes": 3052187,
+        "comparisons": 3428653,
+        "swaps": 761070,
+        "average passes": 30521.87,
+        "average comparisons": 34286.53,
+        "average swaps": 7610.7
+    },
+    "360": {
+        "runs": 100,
+        "passes": 3229634,
+        "comparisons": 3630371,
+        "swaps": 813151,
+        "average passes": 32296.34,
+        "average comparisons": 36303.71,
+        "average swaps": 8131.51
+    },
+    "370": {
+        "runs": 100,
+        "passes": 3410815,
+        "comparisons": 3829036,
+        "swaps": 849574,
+        "average passes": 34108.15,
+        "average comparisons": 38290.36,
+        "average swaps": 8495.74
+    },
+    "380": {
+        "runs": 100,
+        "passes": 3597533,
+        "comparisons": 4047519,
+        "swaps": 900100,
+        "average passes": 35975.33,
+        "average comparisons": 40475.19,
+        "average swaps": 9001
+    },
+    "390": {
+        "runs": 100,
+        "passes": 3791034,
+        "comparisons": 4261029,
+        "swaps": 942966,
+        "average passes": 37910.34,
+        "average comparisons": 42610.29,
+        "average swaps": 9429.66
+    },
+    "400": {
+        "runs": 100,
+        "passes": 3989336,
+        "comparisons": 4479472,
+        "swaps": 994512,
+        "average passes": 39893.36,
+        "average comparisons": 44794.72,
+        "average swaps": 9945.12
+    },
+    "410": {
+        "runs": 100,
+        "passes": 4191034,
+        "comparisons": 4706626,
+        "swaps": 1041792,
+        "average passes": 41910.34,
+        "average comparisons": 47066.26,
+        "average swaps": 10417.92
+    },
+    "420": {
+        "runs": 100,
+        "passes": 4396982,
+        "comparisons": 4935203,
+        "swaps": 1098785,
+        "average passes": 43969.82,
+        "average comparisons": 49352.03,
+        "average swaps": 10987.85
+    },
+    "430": {
+        "runs": 100,
+        "passes": 4607549,
+        "comparisons": 5168702,
+        "swaps": 1145758,
+        "average passes": 46075.49,
+        "average comparisons": 51687.02,
+        "average swaps": 11457.58
+    },
+    "440": {
+        "runs": 100,
+        "passes": 4824911,
+        "comparisons": 5416635,
+        "swaps": 1201574,
+        "average passes": 48249.11,
+        "average comparisons": 54166.35,
+        "average swaps": 12015.74
+    },
+    "450": {
+        "runs": 100,
+        "passes": 5046682,
+        "comparisons": 5662305,
+        "swaps": 1246979,
+        "average passes": 50466.82,
+        "average comparisons": 56623.05,
+        "average swaps": 12469.79
+    },
+    "460": {
+        "runs": 100,
+        "passes": 5274186,
+        "comparisons": 5922340,
+        "swaps": 1311339,
+        "average passes": 52741.86,
+        "average comparisons": 59223.4,
+        "average swaps": 13113.39
+    },
+    "470": {
+        "runs": 100,
+        "passes": 5507300,
+        "comparisons": 6192625,
+        "swaps": 1379290,
+        "average passes": 55073,
+        "average comparisons": 61926.25,
+        "average swaps": 13792.9
+    },
+    "480": {
+        "runs": 100,
+        "passes": 5743976,
+        "comparisons": 6461220,
+        "swaps": 1436335,
+        "average passes": 57439.76,
+        "average comparisons": 64612.2,
+        "average swaps": 14363.35
+    },
+    "490": {
+        "runs": 100,
+        "passes": 5988110,
+        "comparisons": 6723977,
+        "swaps": 1490060,
+        "average passes": 59881.1,
+        "average comparisons": 67239.77,
+        "average swaps": 14900.6
+    },
+    "500": {
+        "runs": 100,
+        "passes": 6234390,
+        "comparisons": 7011116,
+        "swaps": 1563527,
+        "average passes": 62343.9,
+        "average comparisons": 70111.16,
+        "average swaps": 15635.27
+    }
+}
