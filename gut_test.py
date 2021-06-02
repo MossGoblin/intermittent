@@ -30,17 +30,21 @@ def confirm_sort(bucket: List) -> bool:
 
 def add_average_to_log(log: Dict):
     for set_size, set_info in log.items():
-        set_info['average passes'] = set_info['passes'] / \
-            int(set_size)
-        set_info['average comparisons'] = set_info['comparisons'] / \
-            int(set_size)
-        set_info['average swaps'] = set_info['swaps'] / int(set_size)
+        factor = int(set_info['runs'])
+        set_info['average passes'] = set_info['passes'] / factor
+        set_info['average comparisons'] = set_info['comparisons'] / factor
+        set_info['average swaps'] = set_info['swaps'] / factor
     return log
 
 
 def record_run(log, set_length, passes, comparisons, swaps):
     if set_length not in log:
         log[set_length] = {}
+
+    if 'runs' in log[set_length]:
+        log[set_length]['runs'] = log[set_length]['runs'] + 1
+    else:
+        log[set_length]['runs'] = 1
 
     if 'passes' in log[set_length]:
         log[set_length]['passes'] = log[set_length]['passes'] + passes
@@ -59,6 +63,9 @@ def record_run(log, set_length, passes, comparisons, swaps):
 
     return log
 
+def get_name(algo: str, iterations: int, min: int, max: int) -> str:
+    return f'log_{algo}_{iterations}_{min}_{max}.json'
+
 
 def process(algos: List, repetition: int, min: int, max: int):
     start = datetime.utcnow()
@@ -67,7 +74,7 @@ def process(algos: List, repetition: int, min: int, max: int):
 
     for power in range(min, max+1):
         for rep in range(repetition):
-            input.append(get_rand_set(0, 10*power, 10*(2**power)))
+            input.append(get_rand_set(0, 10*power, 10*power))
 
     # input.append([2.3, -3.5, 77.14, 77.1, -1, 0])
 
@@ -86,7 +93,7 @@ def process(algos: List, repetition: int, min: int, max: int):
             print(f"set length: {set_length}")
             print(f"min magnitude: {min}")
             print(f"max magnitude: {max}")
-            # print(set) # DBG VISIBILITY ONLY
+            print(set) # DBG VISIBILITY ONLY
             start_bucket = deepcopy(set)
             sort_start = datetime.utcnow()
             if algo == 'crystal':
@@ -96,7 +103,7 @@ def process(algos: List, repetition: int, min: int, max: int):
                     start_bucket)
 
             sort_end = datetime.utcnow()
-            # print(bucket) # DBG VISIBILITY ONLY
+            print(bucket) # DBG VISIBILITY ONLY
 
             # DBG TEST FAIL
             # Uncomment the next row to replace the sorted buket with the unsorted one
@@ -136,10 +143,11 @@ def process(algos: List, repetition: int, min: int, max: int):
 
         log = add_average_to_log(log)
 
-        with open('log.log', 'w') as logfile:
+        log_name = get_name(algo, repetition, min, max)
+        with open(log_name, 'w') as logfile:
             content = json.dumps(log)
             logfile.write(content)
 
 
 if __name__ == '__main__':
-    process(['crystal'], 10, 1, 10)
+    process(['crystal'], 1, 1, 10)
