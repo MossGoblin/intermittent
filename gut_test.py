@@ -30,6 +30,8 @@ def confirm_sort(bucket: List) -> bool:
 
 def add_average_to_log(log: Dict):
     for set_size, set_info in log.items():
+        set_info['average passes'] = set_info['passes'] / \
+            int(set_size)
         set_info['average comparisons'] = set_info['comparisons'] / \
             int(set_size)
         set_info['average swaps'] = set_info['swaps'] / int(set_size)
@@ -65,7 +67,7 @@ def process(algos: List, repetition: int, min: int, max: int):
 
     for power in range(min, max+1):
         for rep in range(repetition):
-            input.append(get_rand_set(0, 10*power, 10**power))
+            input.append(get_rand_set(0, 10*power, 10*(2**power)))
 
     # input.append([2.3, -3.5, 77.14, 77.1, -1, 0])
 
@@ -140,4 +142,4 @@ def process(algos: List, repetition: int, min: int, max: int):
 
 
 if __name__ == '__main__':
-    process(['crystal'], 10, 1, 4)
+    process(['crystal'], 10, 1, 10)
