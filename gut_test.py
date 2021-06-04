@@ -63,6 +63,7 @@ def record_run(log, set_length, passes, comparisons, swaps):
 
     return log
 
+
 def get_name(algo: str, iterations: int, min: int, max: int) -> str:
     return f'log_{algo}_{iterations}_{min}_{max}.json'
 
@@ -76,7 +77,7 @@ def process(algos: List, repetition: int, min: int, max: int):
         for rep in range(repetition):
             input.append(get_rand_set(0, 10*power, 10*power))
 
-    # input.append([1, 5, 2, 4, 6])
+    # input.append([7, 1, 8, 5, 3, 7, 7, 3, 3, 3])
 
     log = {}
     fails = {}
@@ -93,17 +94,17 @@ def process(algos: List, repetition: int, min: int, max: int):
             print(f"set length: {set_length}")
             print(f"min magnitude: {min}")
             print(f"max magnitude: {max}")
-            # print(set) # DBG VISIBILITY ONLY
+            print(set) # DBG VISIBILITY ONLY
             start_bucket = deepcopy(set)
             sort_start = datetime.utcnow()
             if algo == 'crystal':
-                bucket, passes, comparisons, swaps = crystal_sort(start_bucket)
+                bucket, passes, comparisons, swaps = sort_03(start_bucket)
             elif algo == 'insertion':
                 bucket, passes, comparisons, swaps = insertion_sort(
                     start_bucket)
 
             sort_end = datetime.utcnow()
-            # print(bucket) # DBG VISIBILITY ONLY
+            print(bucket) # DBG VISIBILITY ONLY
 
             # DBG TEST FAIL
             # Uncomment the next row to replace the sorted buket with the unsorted one
@@ -138,16 +139,17 @@ def process(algos: List, repetition: int, min: int, max: int):
                 content = json.dumps(fails)
                 logfile.write(content)
 
-        end = datetime.utcnow()
-        print(f"Total time: {end - start}")
+        else:
+            end = datetime.utcnow()
+            print(f"Total time: {end - start}")
 
-        log = add_average_to_log(log)
+            log = add_average_to_log(log)
 
-        log_name = get_name(algo, repetition, min, max)
-        with open(log_name, 'w') as logfile:
-            content = json.dumps(log)
-            logfile.write(content)
+            log_name = get_name(algo, repetition, min, max)
+            with open(log_name, 'w') as logfile:
+                content = json.dumps(log)
+                logfile.write(content)
 
 
 if __name__ == '__main__':
-    process(['crystal'], 100, 100, 100)
+    process(['crystal'], 100, 10, 11)

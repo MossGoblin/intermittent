@@ -34,4 +34,3 @@ def insertion_sort(array):
         array[j + 1] = key_item
 
     return array, passes, comparisons, swaps
-
