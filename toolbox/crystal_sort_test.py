@@ -158,47 +158,45 @@ def sort_03(incoming_bucket):
     index = 0
     while len(bucket) > (offset_start + offset_end):
 
-        # subset boundaries
+        passes += 1
+
         subset_start_index  = offset_start
         subset_end_index    = len(bucket) - 1 - offset_end
 
-        # next inner iteration boundaries
-        # iteration_start = subset_start_index
-        # iteration_end = subset_end_index
-
-        # found_highest = False
-        # found_lowest = False
-
-        # pass 1 - find min/max for the subset
+        # Primary pass - find the lowest and highest for the subset 
+        # and position them
         for index in range(subset_start_index, subset_end_index + 1):
             seed = bucket[index]
-            # if not found_highest and seed > bucket[subset_end_index]:
+
             if seed > bucket[subset_end_index]:
                 bucket[index], bucket[subset_end_index] = bucket[subset_end_index], bucket[index]
-                # found_highest = True
+                swaps += 1
                 continue
             else:
-                # if not found_lowest and seed < bucket[subset_start_index]:
                 if seed < bucket[subset_start_index]:
+                    comparisons += 1
                     bucket[index], bucket[subset_start_index] = bucket[subset_start_index], bucket[index]
-                    # found_lowest = True
+                    swaps += 1
                     continue
-            # if found_highest and found_lowest:
-            #     break
         
-        # pass 2 - dig out all lowest/highest matches
+        # Secondary pass - with the brachets of the current subset,
+        # find all matches to the lower and higher bracket and move them
+        # to the edges
         search_offset_start = 0
         search_offset_end = 0
         lowest = bucket[subset_start_index]
         highest = bucket[subset_end_index]
         search_start_index = subset_start_index + 1
         search_end_index = subset_end_index
-        # for index in range(search_start_index, search_end_index):
         index = search_start_index
-        # while index < search_end_index and (search_offset_end + search_offset_start) < search_length:
+
         while index < (subset_end_index - search_offset_end) and (subset_start_index + search_offset_start + search_offset_end < subset_end_index):
+
+            passes += 1
+
             seed = bucket[index]
 
+            comparisons += 1
             if seed == lowest:
                 if index == search_start_index:
                     search_offset_start += 1
@@ -208,7 +206,9 @@ def sort_03(incoming_bucket):
                 swap_position = subset_start_index + search_offset_start
                 bucket[index], bucket[swap_position] = bucket[swap_position], bucket[index]
                 index += 1
+                swaps += 1
             elif seed == highest:
+                comparisons += 1
                 if index == search_end_index:
                     search_offset_end += 1
                     index += 1
@@ -216,6 +216,7 @@ def sort_03(incoming_bucket):
                 search_offset_end += 1
                 swap_position = subset_end_index - search_offset_end
                 bucket[index], bucket[swap_position] = bucket[swap_position], bucket[index]
+                swaps += 1
             else:
                 index += 1
             

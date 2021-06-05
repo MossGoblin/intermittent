@@ -94,7 +94,7 @@ def process(algos: List, repetition: int, min: int, max: int):
             print(f"set length: {set_length}")
             print(f"min magnitude: {min}")
             print(f"max magnitude: {max}")
-            print(set) # DBG VISIBILITY ONLY
+            # print(set) # DBG VISIBILITY ONLY
             start_bucket = deepcopy(set)
             sort_start = datetime.utcnow()
             if algo == 'crystal':
@@ -104,7 +104,7 @@ def process(algos: List, repetition: int, min: int, max: int):
                     start_bucket)
 
             sort_end = datetime.utcnow()
-            print(bucket) # DBG VISIBILITY ONLY
+            # print(bucket) # DBG VISIBILITY ONLY
 
             # DBG TEST FAIL
             # Uncomment the next row to replace the sorted buket with the unsorted one
@@ -152,4 +152,4 @@ def process(algos: List, repetition: int, min: int, max: int):
 
 
 if __name__ == '__main__':
-    process(['crystal'], 100, 10, 11)
+    process(['crystal'], 100, 100, 200)
