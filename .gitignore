@@ -138,3 +138,9 @@ cython_debug/
 
 # VSCODE
 .vscode/
+
+# TEST DATA
+.data/
+
+# VENV
+.pytoolbox_dev/

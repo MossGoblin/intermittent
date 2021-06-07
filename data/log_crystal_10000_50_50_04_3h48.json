@@ -1,0 +1,11 @@
+{
+    "500": {
+        "runs": 10000,
+        "passes": 792548574,
+        "comparisons": 1146390871,
+        "swaps": 90741116,
+        "average passes": 79254.8574,
+        "average comparisons": 114639.0871,
+        "average swaps": 9074.1116
+    }
+}

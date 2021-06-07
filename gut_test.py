@@ -77,7 +77,7 @@ def process(algos: List, repetition: int, min: int, max: int):
         for rep in range(repetition):
             input.append(get_rand_set(0, 10*power, 10*power))
 
-    # input.append([7, 1, 8, 5, 3, 7, 7, 3, 3, 3])
+    # input.append([6, 1, 7, 7, 1, 8, 5, 0, 0, 7])
 
     log = {}
     fails = {}
@@ -94,17 +94,17 @@ def process(algos: List, repetition: int, min: int, max: int):
             print(f"set length: {set_length}")
             print(f"min magnitude: {min}")
             print(f"max magnitude: {max}")
-            # print(set) # DBG VISIBILITY ONLY
+            print(set)  # DBG VISIBILITY ONLY
             start_bucket = deepcopy(set)
             sort_start = datetime.utcnow()
             if algo == 'crystal':
-                bucket, passes, comparisons, swaps = sort_03(start_bucket)
+                bucket, passes, comparisons, swaps = sort_04(start_bucket)
             elif algo == 'insertion':
                 bucket, passes, comparisons, swaps = insertion_sort(
                     start_bucket)
 
             sort_end = datetime.utcnow()
-            # print(bucket) # DBG VISIBILITY ONLY
+            print(bucket)  # DBG VISIBILITY ONLY
 
             # DBG TEST FAIL
             # Uncomment the next row to replace the sorted buket with the unsorted one
@@ -152,4 +152,4 @@ def process(algos: List, repetition: int, min: int, max: int):
 
 
 if __name__ == '__main__':
-    process(['crystal'], 100, 100, 200)
+    process(['crystal'], 10000, 50, 50)
