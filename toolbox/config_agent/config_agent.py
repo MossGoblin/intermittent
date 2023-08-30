@@ -33,8 +33,8 @@ class ConfigAgent():
 
     def __init__(self, 
                  config_path: str, 
-                 autocast: bool = False, 
-                 strict_autocast: bool = False,
+                 autocast: bool = True, 
+                 strict_autocast: bool = True,
                  category_prefix: str = ''):
         """
         Parameters
@@ -42,9 +42,9 @@ class ConfigAgent():
         config_path : str
             The full path of the config file
         autocast : bool, optional
-            If True, the ConfigAgent tries to cast each parameter to a type (default is False)
+            If True, the ConfigAgent tries to cast each parameter to a type (default is True)
         strict_autocast : bool, optional
-            If True and autocast == True, failing to cast a parameter raises an Exception (default is False)
+            If True and autocast == True, failing to cast a parameter raises an Exception (default is True)
         category_prefix : bool, optional
             If True the names of the category objects will be prefixed by the passed string (default is an empty string)
         """
@@ -64,13 +64,15 @@ class ConfigAgent():
             for parameter in self.config[section]:
                     if autocast:
                         try:
-                            parameter = self._try_cast(parameter)
+                            parameter_value = self._try_cast(self.config[section][parameter])
                         except Exception as e:
                             if strict_autocast:
                                 raise Exception (f'Autocast failed: {e}')
                             else:
                                 pass
-                    setattr(new_section, parameter, self.config[section][parameter])
+                    else:
+                        parameter_value = self.config[section][parameter]
+                    setattr(new_section, parameter, parameter_value)
             setattr(self, section_name, new_section)
 
     def _try_cast(self, param: str):
