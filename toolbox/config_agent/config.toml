@@ -1,8 +1,0 @@
-[parameters]
-param_float = 0.3
-param_str = "something"
-
-[run]
-param_bool = true
-param_list = [2,3,4]
-param_int = 1
