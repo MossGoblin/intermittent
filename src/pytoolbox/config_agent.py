@@ -71,5 +71,7 @@ class ConfigAgent():
             setattr(self, section_name, new_section)
         else:
             section = getattr(self, section_name)
+            if hasattr(section, parameter):
+                raise ValueError(f'Parameter "{parameter}" already exists in section "{section_name}"')
             setattr(section, parameter, parameter_value)
 
